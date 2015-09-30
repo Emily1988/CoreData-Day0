@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "MigrationVC.h"
 
 @interface CoreDataHelper :NSObject
 
@@ -16,6 +17,7 @@
 @property (nonatomic, readonly) NSManagedObjectModel         *model;
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *coordinator;
 @property (nonatomic, readonly) NSPersistentStore            *store;
+@property (nonatomic, retain) MigrationVC *migrationVC;
 
 - (void)setupCoreData;
 - (void)saveContext;

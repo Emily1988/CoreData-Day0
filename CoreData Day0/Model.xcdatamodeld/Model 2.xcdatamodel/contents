@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="collected" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="listed" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -7,8 +7,12 @@
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Float" defaultValueString="1" syncable="YES"/>
     </entity>
+    <entity name="Measurement" representedClassName="Measurement" syncable="YES">
+        <attribute name="abc" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <fetchRequest name="Test" entity="Item" predicateString="name CONTAINS &quot;e&quot;"/>
     <elements>
-        <element name="Item" positionX="160" positionY="192" width="128" height="118"/>
+        <element name="Item" positionX="153" positionY="72" width="128" height="118"/>
+        <element name="Measurement" positionX="171" positionY="306" width="128" height="60"/>
     </elements>
 </model>

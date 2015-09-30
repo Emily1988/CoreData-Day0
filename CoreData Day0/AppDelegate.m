@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Item.h"
+#import "Measurement.h"
+#import "Amount.h"
+#import "Unit.h"
 
 @interface AppDelegate ()
 
@@ -22,42 +25,73 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     
-    NSArray *arrayitemNames = [NSArray arrayWithObjects:@"Apple",@"Milk",@"Bread",@"Cheese",@"Sausages",@"Fish",@"OrangeJuice" ,nil];
-    for (NSString *newItemName in arrayitemNames) {
-        Item *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:_coreDataHelper.context];
-        newItem.name = newItemName;
-        NSLog(@"插入新的Managed对象 %@",newItem.name);
-    }
-
-    //MARK: 获取托管对象
-    NSError *error = nil;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
-    //MARK: 对获取请求结果排序
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    [request setSortDescriptors:[NSArray arrayWithObject:sort]];
-    NSArray *fetchedObjects = [_coreDataHelper.context executeFetchRequest:request error:&error];
-    // 查看每个托管对象特性值
-    for (Item *item in fetchedObjects){
-        NSLog(@"fetched Object = %@",item.name);
-    }
+    // 插入一些假数据，方便测试
+//    for (int i = 0 ; i < 50000; i++) {
+//        Measurement *newMeasurement = [NSEntityDescription insertNewObjectForEntityForName:@"Measurement" inManagedObjectContext:_coreDataHelper.context];
+//        
+//        newMeasurement.abc = [NSString stringWithFormat:@"--->> LOTS OF TEST DATA x%i",i];
+//        NSLog(@"Inserted %@",newMeasurement.abc);
+//    }
+//    [_coreDataHelper saveContext];
     
-    //MARK: 获取请求模板的用法
-    //  注意第一行代码和上面的不同
-    NSFetchRequest *request1 = [[[_coreDataHelper model] fetchRequestTemplateForName:@"Test"] copy];
-    NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    [request1 setSortDescriptors:[NSArray arrayWithObject:sort1]];
-    NSArray *fetchedObjects1 = [_coreDataHelper.context executeFetchRequest:request1 error:&error];
-    for (Item *item in fetchedObjects1){
-        NSLog(@"fetched Object 2 = %@",item.name);
-    }
+//    for (int i = 0 ; i < 50000; i++) {
+//        Amount *newamount = [NSEntityDescription insertNewObjectForEntityForName:@"Amount" inManagedObjectContext:_coreDataHelper.context];
+//        
+//        newamount.xyz = [NSString stringWithFormat:@"--->> LOTS OF TEST DATA x%i",i];
+//        NSLog(@"Inserted %@",newamount.xyz);
+//    }
+//    [_coreDataHelper saveContext];
 
-    // MARK:删除托管对象
-    NSFetchRequest *request2 = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
-    NSArray *fetchedObjects2 = [_coreDataHelper.context executeFetchRequest:request2 error:&error];
-    for (Item *item in fetchedObjects2){
-        NSLog(@"Delete Object = %@",item.name);
-        [_coreDataHelper.context deleteObject:item];
-    }
+    
+//    NSFetchRequest *requset = [NSFetchRequest fetchRequestWithEntityName:@"Amount"];
+//    // 获取50个样例（获取到的结果数量限制到50）
+//    [requset setFetchLimit:50];
+//    
+//    NSError *error = nil;
+//    NSArray *fetchObject = [_coreDataHelper.context executeFetchRequest:requset error:&error];
+//    
+//    if (error) {
+//        NSLog(@"%@",error);
+//    }else
+//    {
+//        for (Amount *amount in fetchObject) {
+//            NSLog(@"fetch Object = %@",amount.xyz);
+//        }
+//    }
+    
+//    NSFetchRequest *requset = [NSFetchRequest fetchRequestWithEntityName:@"Unit"];
+//    // 获取50个样例（获取到的结果数量限制到50）
+//    [requset setFetchLimit:50];
+//    
+//    NSError *error = nil;
+//    NSArray *fetchObject = [_coreDataHelper.context executeFetchRequest:requset error:&error];
+//    
+//    if (error) {
+//        NSLog(@"%@",error);
+//    }else
+//    {
+//        for (Unit *amount in fetchObject) {
+//            NSLog(@"fetch Object = %@",amount.name);
+//        }
+//    }
+
+    Unit *kg = [NSEntityDescription insertNewObjectForEntityForName:@"Unit" inManagedObjectContext:[[self cdh] context]];
+    Item *oranges = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[[self cdh] context]];
+    Item *bananas = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[[self cdh] context]];
+
+    kg.name = @"Kg";
+    oranges.name = @"Oranges";
+    bananas.name = @"Bananas";
+    oranges.quantity = [NSNumber numberWithInt:1];
+    bananas.quantity = [NSNumber numberWithInt:4];
+    oranges.listed = [NSNumber numberWithBool:YES];
+    bananas.listed = [NSNumber numberWithBool:YES];
+    oranges.unit = kg;
+    bananas.unit = kg;
+    
+    NSLog(@"Inserted %@%@ %@",oranges.quantity,oranges.unit.name,oranges.name);
+    NSLog(@"Inserted %@%@ %@",bananas.quantity,bananas.unit.name,bananas.name);
+    [[self cdh] saveContext];
 }
 
 - (CoreDataHelper*)cdh {

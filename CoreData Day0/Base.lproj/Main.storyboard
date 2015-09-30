@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="265" y="277"/>
+        </scene>
+        <!--MigrationVC-->
+        <scene sceneID="KLf-7a-Kdn">
+            <objects>
+                <viewController storyboardIdentifier="migration" id="Rar-Xx-Oq1" customClass="MigrationVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WDt-OR-rx0"/>
+                        <viewControllerLayoutGuide type="bottom" id="zVx-2H-zmC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QlU-Tg-G14">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Migration Progress 0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AY6-AV-k9m">
+                                <rect key="frame" x="20" y="254" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-tC-dSy">
+                                <rect key="frame" x="20" y="283" width="280" height="2"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PCa-tC-dSy" firstAttribute="trailing" secondItem="AY6-AV-k9m" secondAttribute="trailing" id="7k2-dc-xQT"/>
+                            <constraint firstItem="AY6-AV-k9m" firstAttribute="leading" secondItem="QlU-Tg-G14" secondAttribute="leading" constant="20" symbolic="YES" id="bYu-HN-Xl9"/>
+                            <constraint firstItem="PCa-tC-dSy" firstAttribute="centerY" secondItem="QlU-Tg-G14" secondAttribute="centerY" id="jBS-Iu-YmW"/>
+                            <constraint firstItem="PCa-tC-dSy" firstAttribute="top" secondItem="AY6-AV-k9m" secondAttribute="bottom" constant="8" symbolic="YES" id="jsm-B8-fp3"/>
+                            <constraint firstItem="PCa-tC-dSy" firstAttribute="leading" secondItem="AY6-AV-k9m" secondAttribute="leading" id="n4d-j7-hOR"/>
+                            <constraint firstAttribute="trailing" secondItem="AY6-AV-k9m" secondAttribute="trailing" constant="20" symbolic="YES" id="qvw-2S-usE"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="label" destination="AY6-AV-k9m" id="k8A-ds-xU2"/>
+                        <outlet property="progressView" destination="PCa-tC-dSy" id="m0j-RJ-r62"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VqB-8R-kZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50" y="-691"/>
         </scene>
     </scenes>
 </document>
